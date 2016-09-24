@@ -1,0 +1,36 @@
+<%= form_for([@building, @installment]) do |f| %>
+  <% if @installment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@installment.errors.count, "error") %> prohibited this installment from being saved:</h2>
+
+      <ul>
+      <% @installment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="fie">
+    <%= f.hidden_field :building_id, value: @building.id %>
+  </div>
+  <div class="form-group">
+    <%= f.label :amount %><br>
+    <%= f.text_field :amount %>
+  </div>
+  <div class="form-group">
+    <%= f.label :installment_date %><br>
+    <%= f.date_select :installment_date %>
+  </div>
+  <div class="form-group">
+    <%= f.label :status %><br>
+    <%= f.select :status, ["paid", "scheduled", "overdue"], {prompt: "Select" } %>
+  </div>
+  <div class="form-group">
+    <%= f.label :details %><br>
+    <%= f.text_area :details %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

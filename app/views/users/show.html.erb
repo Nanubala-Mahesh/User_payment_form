@@ -1,0 +1,54 @@
+<div class="row">
+<div class="col-md-12">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+
+
+<%= render '/buildings/form' %>
+
+
+<h1>Listing Buildings</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Total budget</th>
+      <th>Discount</th>
+      <th>Net budget</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.buildings.each do |building| %>
+      <tr>
+        <td><%= building.title %></td>
+        <td><%= building.description %></td>
+        <td><%= building.total_budget %></td>
+        <td><%= building.discount %></td>
+        <td><%= building.net_budget %></td>
+        <td><%= building.user_id %></td>
+        <td><%= link_to 'Show', building %></td>
+        <td><%= link_to 'Edit', edit_building_path(building) %></td>
+        <td><%= link_to 'Destroy', building, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
